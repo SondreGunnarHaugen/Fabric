@@ -1,0 +1,5 @@
+# Power BI App
+
+A Power BI App is a packaged, read-only collection of related reports, dashboards, and semantic models distributed from a workspace to end-users. Beyond packaging content, Apps dramatically simplify information discovery. Rather than managing and distributing separate links for ten different reports, you provide a single App URL where users access all ten reports from a centralized, structured menu.
+
+Furthermore, you can establish custom audience groups within a single App to control content visibility. This is where [Entra ID Security Groups](entraid.md) become essential. For instance, Security Group 1 can be granted access to the full report catalog, while Security Group 2 only sees a curated subset of reports. By leveraging Apps in this manner, you significantly enhance the end-user experience while streamlining governance for report creators.
