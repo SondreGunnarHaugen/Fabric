@@ -1,0 +1,41 @@
+# .github/workflows/check-links.yml
+#
+# Runs test_markdown_links.py on every push and pull request targeting the
+# test or main branches, per the CI/CD validation gate described in
+# fabric/architecture/deployment.md. A broken link fails the check and
+# blocks the PR merge.
+
+name: Check Markdown Links
+
+on:
+  pull_request:
+    branches:
+      - test
+      - main
+    paths:
+      - "**/*.md"                    # only run when a Markdown file actually changed
+      - "test_markdown_links.py"     # or when the checker itself changes
+  push:
+    branches:
+      - test
+      - main
+
+jobs:
+  check-links:
+    name: Verify all local links/images resolve
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: Run link checker
+        run: pytest test/markdown_links.py -v

@@ -1,0 +1,49 @@
+name: Replace Sandbox IDs after merge to dev
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - dev
+
+jobs:
+  replace-ids:
+    runs-on: ubuntu-latest
+
+    # Only run when a PR from dev_sandbox_sondre is actually merged (not just closed)
+    if: >
+      github.event.pull_request.merged == true &&
+      startsWith(github.event.pull_request.head.ref, 'dev_sandbox_sondre')
+
+    env:
+      DEV_SANDBOX_SONDRE_WORKSPACE_ID: ${{ secrets.DEV_SANDBOX_SONDRE_WORKSPACE_ID }}
+      DEV_SANDBOX_SONDRE_LAKEHOUSE_ID: ${{ secrets.DEV_SANDBOX_SONDRE_LAKEHOUSE_ID }}
+      UTVIKLING_WORKSPACE_ID: ${{ secrets.UTVIKLING_WORKSPACE_ID }}
+      UTVIKLING_LAKEHOUSE_ID: ${{ secrets.UTVIKLING_LAKEHOUSE_ID }}
+
+    steps:
+      - name: Checkout dev branch
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run ID replacement script
+        run: python .github/scripts/replace_ids.py
+
+      - name: Commit replacements to dev
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet && echo "No changes to commit" || (
+            git add -A
+            git commit -m "chore: replace Sandbox IDs with Utvikling IDs [skip ci]"
+            git pull --rebase origin dev
+            git push origin dev
+          )

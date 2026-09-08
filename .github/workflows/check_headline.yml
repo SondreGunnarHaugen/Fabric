@@ -1,0 +1,23 @@
+name: Check Markdown Headlines
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate-markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # If you put the script in a different folder, update the path below
+      - name: Run Headline Checker
+        run: python tests/check_headlines.py
