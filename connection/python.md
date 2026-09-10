@@ -67,7 +67,11 @@ Next, add the SQL Endpoint (Warehouse):
 
 ![Python_Fabric_Warehouse_Selection](images/Python_Fabric_warehouse_selection.png)
 
-Finally, select Python and right-click on the table to retrieve data (Fabric automatically generates the retrieval code). Make any necessary changes to the SQL query and use
+Finally, select Python and right-click on the table to retrieve data (Fabric automatically generates the r code):
+
+![Python_Fabric_Get_Data](images/Python_Fabric_Get_Data.png)
+
+Make any necessary changes to the SQL query and use
 
 ```python
 df = arrow_table.to_pandas()
@@ -76,4 +80,3 @@ df = arrow_table.to_pandas()
 
 to save it as a dataframe. **NOTE:** The first time you run the code, it will take some time to establish the connection to the data:
 
-![Python_Fabric_Get_Data](images/Python_Fabric_Get_Data.png)
