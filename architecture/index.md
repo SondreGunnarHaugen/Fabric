@@ -19,3 +19,13 @@ TODO:
     * CI/CD script for discourage implicit measures and hiding them (reference with )
 * Delegated OneLake Shortcuts (Preview)
 * Creation of hash values for RK and SK
+* Usage of V-ordering, Optimize, Z-ordering, and VACUUM 
+* Usage of global functions
+* How to deal with schema changes
+    * Adding Columns
+    * Changing data types of existing columns
+    * Renaming columns
+    * Removing columns
+    * Changing nullable attributes
+* Use of Material Views
+
