@@ -20,7 +20,7 @@ TODO:
 * Delegated OneLake Shortcuts (Preview)
 * Creation of hash values for RK and SK
 * Usage of V-ordering, Optimize, Z-ordering, and VACUUM 
-* Usage of global functions
+* Usage of [User Data Functions](https://learn.microsoft.com/en-us/fabric/data-engineering/user-data-functions/user-data-functions-overview)
 * How to deal with schema changes
     * Adding Columns
     * Changing data types of existing columns
