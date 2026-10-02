@@ -33,3 +33,4 @@ TODO:
         * Calculations group does not work in Tabular Editor 2, but can still edit them in the .tmdl files
     * Developers only work on items on local github branch and switch the branch test is connected to
         * allows for multiple project to be tested at the same time (create more test workspace if multiple projects must be tested at the same time)
+        * Allows for better git history of commits and PR as one can clean up before pr
